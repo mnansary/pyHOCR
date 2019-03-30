@@ -21,7 +21,7 @@ class Preprocessor(object):
 
     def __validation_test_train_data(self):
         print('#    Extracting Test Train Validation data')
-        self.__test_files,self.__test_classes=self.__load_dataset(self.__test_data_path)
+        self.__test_files,self.test_classes=self.__load_dataset(self.__test_data_path)
         self.__model_files,self.__model_classes=self.__load_dataset(self.__train_data_path)
         self.__train_files,self.__validation_files,self.train_classes,self.validation_classes=train_test_split(self.__model_files,self.__model_classes,test_size=0.2,stratify=self.__model_classes)
     
@@ -47,11 +47,12 @@ class Preprocessor(object):
         self.validation_tensors = self.__files_to_tensors(self.__validation_files)
         self.test_tensors = self.__files_to_tensors(self.__test_files)
     
-    def preprocess_data(self):
+    def preprocess_data(self,return_flag=True):
         print('#    Preprocessing Data')
         self.__validation_test_train_data()
         self.__load_tensors()
-        return [self.train_tensors,self.train_classes,self.validation_tensors,self.validation_classes]
+        if return_flag:
+            return [self.train_tensors,self.train_classes,self.validation_tensors,self.validation_classes]
         
 
         

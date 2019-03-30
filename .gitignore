@@ -103,5 +103,4 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# ignore saved_models
-saved_models/*
+
