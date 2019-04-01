@@ -10,9 +10,12 @@ from sklearn import metrics
 
 parser = argparse.ArgumentParser(description='Bangla OCR 50 class Alphabet DenseNet Model')
 parser.add_argument("datafolder", help="/path/to/Data/Folder")
+parser.add_argument("flag", help="Train/Test/Apply")
 
 args = parser.parse_args()
 database_path=args.datafolder
+exec_flag=args.flag
+
 
 model_name='denseNet.hdf5'
 
@@ -38,23 +41,21 @@ def train_data(data_shape,model_name,data,epochs=250,batch_size=100):
 
 def test_data(model_name):
     preprocObj=Preprocessor(database_path=database_path)
-    preprocObj.preprocess_data(return_flag=False)
-    
+    preprocObj.preprocess_data(return_flag=False)    
     test_tensors=preprocObj.test_tensors
     test_targets=preprocObj.test_classes
-
     model=DenseNet(input_shape=data_shape,nb_classes=50)
     model.load_weights('saved_models/{}'.format(model_name))
-    
     alphabet_predictions = [np.argmax(model.predict(np.expand_dims(tensor,axis=0))) for tensor in test_tensors]
-    
     y_true = [np.argmax(y_test) for y_test in test_targets]
-    
     f1_accuracy = 100* metrics.f1_score(y_true,alphabet_predictions, average = 'micro')
-    
     print('Test F1 accuracy: %.4f%%' % f1_accuracy)
 
 if __name__ == "__main__":
-    data=preprocess(database_path)    
-    #train_data(data_shape,model_name,data)
-    test_data(model_name)
+    if exec_flag=='Train':
+        data=preprocess(database_path)    
+        train_data(data_shape,model_name,data)
+    elif exec_flag=='Test':
+        test_data(model_name)
+    else:
+        pass
