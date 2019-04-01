@@ -17,12 +17,12 @@ class Preprocessor(object):
         file_names=np.array(data_bunch['filenames'])
         targets=np.array(data_bunch['target'])
         classes=to_categorical(targets,num_classes=50)
-        return file_names,classes
+        return file_names,classes,targets
 
     def __validation_test_train_data(self):
         print('#    Extracting Test Train Validation data')
-        self.__test_files,self.test_classes=self.__load_dataset(self.__test_data_path)
-        self.__model_files,self.__model_classes=self.__load_dataset(self.__train_data_path)
+        self.test_files,self.test_classes,self.test_targets=self.__load_dataset(self.__test_data_path)
+        self.__model_files,self.__model_classes,_=self.__load_dataset(self.__train_data_path)
         self.__train_files,self.__validation_files,self.train_classes,self.validation_classes=train_test_split(self.__model_files,self.__model_classes,test_size=0.2,stratify=self.__model_classes)
     
     
@@ -45,7 +45,7 @@ class Preprocessor(object):
         print('#    Loading Tensors')
         self.train_tensors = self.__files_to_tensors(self.__train_files)
         self.validation_tensors = self.__files_to_tensors(self.__validation_files)
-        self.test_tensors = self.__files_to_tensors(self.__test_files)
+        self.test_tensors = self.__files_to_tensors(self.test_files)
     
     def preprocess_data(self,return_flag=True):
         print('#    Preprocessing Data')

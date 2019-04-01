@@ -5,12 +5,12 @@ import numpy as np
 from preprocessing.utils import Preprocessor 
 from trainingModels.densenet import DenseNet
 from keras.callbacks import ModelCheckpoint
-from keras import Sequential
 from sklearn import metrics
+import os
 
 parser = argparse.ArgumentParser(description='Bangla OCR 50 class Alphabet DenseNet Model')
 parser.add_argument("datafolder", help="/path/to/Data/Folder")
-parser.add_argument("flag", help="Train/Test/Apply")
+parser.add_argument("flag", help="Train/Test")
 
 args = parser.parse_args()
 database_path=args.datafolder
@@ -44,12 +44,31 @@ def test_data(model_name):
     preprocObj.preprocess_data(return_flag=False)    
     test_tensors=preprocObj.test_tensors
     test_targets=preprocObj.test_classes
+
+    # Map Labels
+    file_names=preprocObj.test_files
+    targets=preprocObj.test_targets
+    classes=preprocObj.train_classes
+    '''
+    print(len(file_names))
+    print(len(targets))
+    for i in range(100):
+        print('{} --- {} ---- {}'.format(os.path.dirname(file_names[i])[-3:],targets[i],np.argmax(classes[i])))
+    '''
+
+    
     model=DenseNet(input_shape=data_shape,nb_classes=50)
     model.load_weights('saved_models/{}'.format(model_name))
+    
+
     alphabet_predictions = [np.argmax(model.predict(np.expand_dims(tensor,axis=0))) for tensor in test_tensors]
     y_true = [np.argmax(y_test) for y_test in test_targets]
     f1_accuracy = 100* metrics.f1_score(y_true,alphabet_predictions, average = 'micro')
     print('Test F1 accuracy: %.4f%%' % f1_accuracy)
+    
+
+
+
 
 if __name__ == "__main__":
     if exec_flag=='Train':
@@ -58,4 +77,4 @@ if __name__ == "__main__":
     elif exec_flag=='Test':
         test_data(model_name)
     else:
-        pass
+        print('# Please Define proper Flag!')
