@@ -16,12 +16,9 @@ import os
 
 parser = argparse.ArgumentParser(description='Bangla OCR 50 class Alphabet DenseNet Model')
 parser.add_argument("datafolder", help="/path/to/Data/Folder")
-parser.add_argument("flag", help="Train/Test")
 
 args = parser.parse_args()
 database_path=args.datafolder
-exec_flag=args.flag
-
 
 
 def preProcess(database_path):
@@ -59,12 +56,5 @@ def trainModel(data,epochs=250,batch_size=100,optimizer_func='rmsprop'):
 
     
 if __name__ == "__main__":
-    if exec_flag=='Train':
-        data=preProcess(database_path)    
-        trainModel(data)
-
-    elif exec_flag=='Test':
-        print("Removed For Now!!!")
-
-    else:
-        print(colored('FLAG ERROR!!!','red'))    
+    data=preProcess(database_path)    
+    trainModel(data)

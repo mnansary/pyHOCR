@@ -35,7 +35,7 @@ class Preprocessor(object):
         self.__train_files,self.__validation_files,self.train_classes,self.validation_classes=train_test_split(self.model_files,self.model_classes,test_size=0.2,stratify=self.model_classes)
     
     
-    def __convert_file_to_tensor(self,file_name,binarize=True,skeletonize_flag=True):
+    def __convert_file_to_tensor(self,file_name,binarize=False,skeletonize_flag=False):
         img=load_img(file_name,color_mode = "grayscale",target_size=self.__resize_dim)
         arr=img_to_array(img)
         if binarize:
@@ -55,9 +55,9 @@ class Preprocessor(object):
 
     def __load_tensors(self):
         print('#    Loading Tensors')
-        self.train_tensors = self.__files_to_tensors(self.__train_files)
-        self.validation_tensors = self.__files_to_tensors(self.__validation_files)
-        self.test_tensors = self.__files_to_tensors(self.test_files)
+        self.train_tensors = self.__files_to_tensors(self.__train_files).astype('float32')/255
+        self.validation_tensors = self.__files_to_tensors(self.__validation_files).astype('float32')/255
+        self.test_tensors = self.__files_to_tensors(self.test_files).astype('float32')/255
     
     def preprocess_data(self,return_flag=True):
         print('#    Preprocessing Data')
