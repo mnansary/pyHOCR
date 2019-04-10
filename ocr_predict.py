@@ -8,7 +8,7 @@ from termcolor import colored
 from modelUseage.useage import PostProcessor
 import argparse
 
-parser = argparse.ArgumentParser(description='Bangla OCR 50 class Alphabet DenseNet Model')
+parser = argparse.ArgumentParser(description='Bangla OCR 50 class Alphabet DenseNet Model -- Predictor Script')
 parser.add_argument("img_path", help="/path/to/img/file")
 parser.add_argument("model_path",help="/path/to/test/Model.hdf5")
 

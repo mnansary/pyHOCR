@@ -14,7 +14,7 @@ from keras.callbacks import ModelCheckpoint
 from sklearn import metrics
 import os
 
-parser = argparse.ArgumentParser(description='Bangla OCR 50 class Alphabet DenseNet Model')
+parser = argparse.ArgumentParser(description='Bangla OCR 50 class Alphabet DenseNet Model -- Training Script')
 parser.add_argument("datafolder", help="/path/to/Data/Folder")
 
 args = parser.parse_args()
