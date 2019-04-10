@@ -15,14 +15,14 @@ class DenseNet(object):
     def __init__(
         self,image_dim=(32,32,1),
         num_of_classes=50,
-        num_of_layers=6,
+        num_of_layers=12,
         num_of_dense_block=3,
         growth_rate=12, 
         num_of_filter=12, 
         dropout_rate=None,
         weight_decay=1E-4,
         compression=1.0,
-        add_bottleneck=False):
+        add_bottleneck=True):
         """
         Arguments:
             image_dim= shape of image input -> Model Input

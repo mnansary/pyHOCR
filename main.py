@@ -31,7 +31,7 @@ def preProcess(database_path):
 
 def trainModel(data,epochs=250,batch_size=100,optimizer_func='rmsprop'):
     
-    modelObj=DenseNet(compression=0.5,add_bottleneck=True,num_of_layers=12,dropout_rate=0.2)
+    modelObj=DenseNet()
     modelObj.buildDenseNet()
 
     model=modelObj.DenseNetModel
