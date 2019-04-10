@@ -65,8 +65,3 @@ class Preprocessor(object):
         self.__load_tensors()
         if return_flag:
             return [self.train_tensors,self.train_classes,self.validation_tensors,self.validation_classes]
-        
-
-        
-        
-

@@ -6,7 +6,7 @@
 from __future__ import print_function
 from termcolor import colored
 
-from postprocessing.modelLoader import PostProcessor
+from modelUseage.useage import PostProcessor
 import argparse
 
 parser = argparse.ArgumentParser(description='Bangla OCR 50 class Alphabet DenseNet Model')
