@@ -5,7 +5,6 @@
 from __future__ import print_function
 from termcolor import colored
 
-
 from keras.models import Model
 from keras.layers import Activation, Convolution2D, Dropout, GlobalAveragePooling2D
 from keras.layers import Concatenate, Dense, Input, AveragePooling2D
@@ -129,15 +128,16 @@ class DenseNet(object):
             bottleneck_flag='no'
         
 
-        self.model_name='DenseNet-Class:{}-Shape:{}-dropout:{}-bottleneck:{}'.format(self.num_of_classes,self.model_input,dropout_flag,bottleneck_flag)
+        self.model_name='DenseNet-Class:{}-Shape:{}-dropout:{}-bottleneck:{} '.format(self.num_of_classes,self.model_input,dropout_flag,bottleneck_flag)
 
         self.__initialConvLayer()
+
         for layer_num in range(self.num_of_dense_block - 1):
             self.__denseBlock(self.num_of_layers[layer_num])
             self.__transitionBlock()
             self.feature_count = int(self.feature_count * self.compression)
         
         self.__denseBlock(self.num_of_layers[-1])
-        self.__fullyConnect
+        self.__fullyConnect()
         
         self.DenseNetModel=Model(input=self.model_input,output=self.output,name=self.model_name)
