@@ -31,12 +31,12 @@ def preProcess(database_path):
 
 def trainModel(data,epochs=250,batch_size=100,optimizer_func='rmsprop'):
     
-    modelObj=DenseNet()
+    modelObj=DenseNet(compression=0.5,add_bottleneck=True,num_of_layers=12,dropout_rate=0.2)
     modelObj.buildDenseNet()
 
     model=modelObj.DenseNetModel
 
-    model_name=modelObj.model_name+'optimizer:{}'.format(optimizer_func)
+    model_name=modelObj.model_name+'optimizer:{}.hdf5'.format(optimizer_func)
 
     print(colored('Training model:{}'.format(model_name),'red'))
     
