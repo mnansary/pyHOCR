@@ -26,7 +26,7 @@ def preProcess(database_path):
     data=preprocObj.preprocess_data()    
     return data
 
-def trainModel(data,epochs=250,batch_size=100,optimizer_func='rmsprop'):
+def trainModel(data,epochs=250,batch_size=30,optimizer_func='adam'):
     
     modelObj=DenseNet()
     modelObj.buildDenseNet()

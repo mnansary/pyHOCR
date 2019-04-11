@@ -15,14 +15,14 @@ class DenseNet(object):
     def __init__(
         self,image_dim=(32,32,1),
         num_of_classes=50,
-        num_of_layers=12,
+        num_of_layers=6,
         num_of_dense_block=3,
-        growth_rate=12, 
-        num_of_filter=12, 
+        growth_rate=16, 
+        num_of_filter=16, 
         dropout_rate=None,
         weight_decay=1E-4,
         compression=1.0,
-        add_bottleneck=True):
+        add_bottleneck=False):
         """
         Arguments:
             image_dim= shape of image input -> Model Input
@@ -61,6 +61,8 @@ class DenseNet(object):
         """
         self.output= Convolution2D(self.num_of_filter*2,(3,3), padding='same',strides=(1,1),
                       use_bias=False, kernel_regularizer=l2(self.weight_decay))(self.model_input)
+        
+        self.output = BatchNormalization()(self.output)
 
     def __transitionBlock(self):
         """
