@@ -20,15 +20,17 @@ def press(button):
         app.setLabel('RES','[WORKING]')
         app_data=obj.predict_symbol(img_path,app_data=True)
         app.setLabel('RES','PREDICTION::{}'.format(app_data))
-        
+        app.setImage('img',img_path)
     
 
-with gui("বাংলা OCR",bg='RoyalBlue',fg='White') as app:
+with gui("বাংলা H-OCR",bg='RoyalBlue',fg='White') as app:
     # GUI Properties
     app.setFont(size=15,weight='bold')
     app.label("Model: DenseNet", colspan=2,sticky="news",expand="both",bg="SlateBlue")
     app.label("Absolute Image Path", colspan=2,sticky="news",expand="both",bg="DarkSlateBlue")
     app.entry('img_path',value='')
+    app.label(" ", colspan=2,sticky="news",expand="both",bg="MediumSlateBlue")
+    app.addImage('img','./src_img/buet.png')
     app.button('PREDICT',press,colspan=2,sticky="news",expand="both",bg="MediumSlateBlue",fg="WhiteSmoke")
     app.label('RES',value='[Prediction]',sticky="news",colspan=2,expand="both",bg="DarkSlateBlue",fg='Lime')
     
