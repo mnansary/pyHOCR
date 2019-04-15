@@ -49,7 +49,9 @@
 
     optional arguments:
     -h, --help  show this help message and exit
-
+# Test data Prediction Accuracy [F1 accuracy]: 
+    98.13333333333333  (tarined at: google collab )
+![](/src_img/diff.png?raw=true)
 # Symbol List
     'অ','আ','ই','ঈ','উ','ঊ',  
     'ঋ','এ','ঐ','ও','ঔ',  
