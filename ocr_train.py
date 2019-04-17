@@ -10,7 +10,7 @@ import argparse
 import numpy as np 
 from preprocessing.utils import Preprocessor 
 from modelBuilder.models import DenseNet
-from keras.callbacks import ModelCheckpoint
+from keras.callbacks import ModelCheckpoint,TensorBoard
 from sklearn import metrics
 import os
 
@@ -26,7 +26,7 @@ def preProcess(database_path):
     data=preprocObj.preprocess_data()    
     return data
 
-def trainModel(data,epochs=250,batch_size=30,optimizer_func='adam'):
+def trainModel(data,epochs=250,batch_size=30,optimizer_func='rmsprop'):
     
     modelObj=DenseNet()
     modelObj.buildDenseNet()
@@ -51,8 +51,19 @@ def trainModel(data,epochs=250,batch_size=30,optimizer_func='adam'):
     validation_tensors=data[2]
     validation_classes=data[3]
     
-    model.fit(train_tensors, train_classes,validation_data=(validation_tensors, validation_classes),epochs=epochs, batch_size=batch_size, callbacks=[checkpoint], verbose=1)
-
+    tensorboard=TensorBoard(os.path.join("saved_models","LOGS",model_name))
+    history=model.fit(train_tensors, train_classes,validation_data=(validation_tensors, validation_classes),epochs=epochs, batch_size=batch_size, callbacks=[checkpoint,tensorboard], verbose=1)
+    
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('model train vs validation loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'validation'], loc='upper right')
+    plt.savefig(os.path.join('saved_models/',model_name+'_loss'+'.png'))
+    plt.clf()
+    plt.close()    
+    model.save(os.path.join('saved_models','FINAL_'+model_name))
 
     
 if __name__ == "__main__":
