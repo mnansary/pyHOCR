@@ -20,6 +20,8 @@ import matplotlib.pyplot as plt
 import cv2
 import os 
 import scipy.signal
+from scipy.misc import imsave
+from PIL import Image
 
 class Separator(object):
     def __init__(self):
@@ -40,7 +42,7 @@ class Separator(object):
     def __mapConnectedComponents(self):
         print(colored('# Tracking Connected Components !!','green'))
         kernel = np.ones((5,5), np.uint8) 
-        dilated_data = cv2.dilate(self.data, kernel, iterations=5)     
+        dilated_data = cv2.dilate(self.data, kernel, iterations=8)     
         labeled_data,num_of_components =scipy.ndimage.measurements.label(dilated_data)
         diff=self.data*num_of_components - labeled_data
         
@@ -54,7 +56,8 @@ class Separator(object):
             symbol=np.ones((h-y+1,w-x+1))    
             idx=(idx[0]-y,idx[1]-x)
             symbol[idx]=0
-            self.plotData(symbol,identifier='symbol_{}'.format(component),plot_now_flag=False)
+            symbol=np.array(Image.fromarray(symbol).resize((64,64))) 
+            self.plotData(symbol,identifier='{}'.format(component),plot_now_flag=True)
             self.symbols.append(symbol)
         
 
@@ -80,8 +83,8 @@ class Separator(object):
         
         if save_plot_flag:
             print('Saving {} at {}'.format(identifier+'.png',self.output_dir))
-            plt.savefig(os.path.join(self.output_dir,identifier+'.png'))
-        
+            imsave(os.path.join(self.output_dir,identifier+'.png'),data)
+
         plt.clf()
         plt.close()
 
