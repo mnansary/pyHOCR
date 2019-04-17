@@ -48,25 +48,9 @@ class PostProcessor(object):
         print(colored('Test data Prediction Accuracy [F1 accuracy]: {}'.format(prediction_accuracy),'green'))
     
 
-    def predict_symbol(self,img_path,plot_flag=False,resize_dim=(64,64),app_data=False):
+    def predict_symbol(self,img_path,plot_flag=False,app_data=False):
         img_data = cv2.imread(img_path,0)
-        
-        # Otsu's thresholding after Gaussian filtering
-        blur = cv2.GaussianBlur(img_data,(5,5),0)
-        
-        _,thresholded_data = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-        
-        img_data = cv2.resize(thresholded_data,resize_dim) 
-        
-        
-        if plot_flag:
-            plt.title('Thresholded {}'.format(img_path))
-            plt.imshow(thresholded_data)
-            plt.show()
-            plt.clf()
-            plt.close()
             
-        
         tensor=img_to_array(img_data)
 
         tensor=tensor.astype('float32')/255

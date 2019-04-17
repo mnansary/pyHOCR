@@ -10,7 +10,7 @@ from appJar import gui
 
 from modelUseage.useage import PostProcessor
 
-model_path='/home/ansary/WORK/OCR/Models/testModel.hdf5'
+model_path='/home/ansary/WORK/OCR/Models/DenseNet64.hdf5'
 
 obj=PostProcessor(model_path)
 

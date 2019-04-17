@@ -57,7 +57,7 @@ class Separator(object):
             idx=(idx[0]-y,idx[1]-x)
             symbol[idx]=0
             symbol=np.array(Image.fromarray(symbol).resize((64,64))) 
-            self.plotData(symbol,identifier='{}'.format(component),plot_now_flag=True)
+            self.plotData(symbol,identifier='{}'.format(component),plot_now_flag=False)
             self.symbols.append(symbol)
         
 
