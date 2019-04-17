@@ -48,7 +48,7 @@ class PostProcessor(object):
         print(colored('Test data Prediction Accuracy [F1 accuracy]: {}'.format(prediction_accuracy),'green'))
     
 
-    def predict_symbol(self,img_path,plot_flag=False,resize_dim=(32,32),app_data=False):
+    def predict_symbol(self,img_path,plot_flag=False,resize_dim=(64,64),app_data=False):
         img_data = cv2.imread(img_path,0)
         
         # Otsu's thresholding after Gaussian filtering

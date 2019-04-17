@@ -13,7 +13,7 @@ from keras.regularizers import l2
 
 class DenseNet(object):
     def __init__(
-        self,image_dim=(32,32,1),
+        self,image_dim=(64,64,1),
         num_of_classes=50,
         num_of_layers=6,
         num_of_dense_block=3,

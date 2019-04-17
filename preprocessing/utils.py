@@ -14,7 +14,7 @@ from sklearn.model_selection import train_test_split
 from skimage.morphology import skeletonize_3d 
 
 class Preprocessor(object):
-    def __init__(self,database_path=None,resize_dim=(32,32),test_data_identifier='Test',train_data_identifier='Train'):
+    def __init__(self,database_path=None,resize_dim=(64,64),test_data_identifier='Test',train_data_identifier='Train'):
         self.__database_path=database_path
         self.__resize_dim=resize_dim
         self.__test_data_path=os.path.join(self.__database_path,test_data_identifier)
