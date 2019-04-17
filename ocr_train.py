@@ -8,6 +8,7 @@ from termcolor import colored
 
 import argparse
 import numpy as np 
+import matplotlib.pyplot as plt
 from preprocessing.utils import Preprocessor 
 from modelBuilder.models import DenseNet
 from keras.callbacks import ModelCheckpoint,TensorBoard
