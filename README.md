@@ -67,14 +67,14 @@
     'ঁ' not printable :(
 
 # DenseNet   
-    G. Huang et. al 2017(Paper DOI: 10.1109/CVPR.2017.243)  
-    (https://github.com/titu1994/DenseNet)
+[G. Huang et. al 2017](https://ieeexplore.ieee.org/document/8099726)  
 
 ![](/src_img/dense1.png?raw=true)
 ![](/src_img/dense2.png?raw=true)
 
 # Bangla Charecter DenseNet 
-    Alom et. al. 2018 (https://doi.org/10.1155/2018/6747098).  
+[Alom et. al. 2018](https://www.hindawi.com/journals/cin/2018/6747098/)
+
     Digit-(10)- 99.13%,
     Alphabet-(50) -98.31% ,
     Special Char-(13)-98.18%
@@ -83,9 +83,8 @@
 ![](/src_img/alom2.png?raw=true)
  
 # Database: 
-    CMATERdb. (https://code.google.com/archive/p/cmaterdb/)
-    (CMATERdb-3.1.2)
-
+[CMATERdb](https://code.google.com/archive/p/cmaterdb/)
+    
 ![](/src_img/cm.png?raw=true)
 
 # H-OCR- PROJECT
