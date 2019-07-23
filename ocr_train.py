@@ -14,6 +14,7 @@ from modelBuilder.models import DenseNet
 from keras.callbacks import ModelCheckpoint,TensorBoard
 from sklearn import metrics
 import os
+import datetime
 
 parser = argparse.ArgumentParser(description='Bangla OCR 50 class Alphabet DenseNet Model -- Training Script')
 parser.add_argument("datafolder", help="/path/to/Data/Folder")
@@ -28,13 +29,15 @@ def preProcess(database_path):
     return data
 
 def trainModel(data,epochs=250,batch_size=30,optimizer_func='rmsprop'):
+    	
+    os.mkdir('saved_models')
     
     modelObj=DenseNet()
     modelObj.buildDenseNet()
 
     model=modelObj.DenseNetModel
 
-    model_name=modelObj.model_name+'optimizer:{}.hdf5'.format(optimizer_func)
+    model_name=modelObj.model_name+'optimizer:{}-Time-{}.hdf5'.format(optimizer_func,str(datetime.datetime.now()))
 
     print(colored('Training model:{}'.format(model_name),'red'))
     
