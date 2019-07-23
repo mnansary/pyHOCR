@@ -29,8 +29,10 @@ def preProcess(database_path):
     return data
 
 def trainModel(data,epochs=250,batch_size=30,optimizer_func='rmsprop'):
-    	
-    os.mkdir('saved_models')
+    if os.path.exists('saved_models'):
+        print("# Found Saving Directory")
+    else:	
+        os.mkdir('saved_models')
     
     modelObj=DenseNet()
     modelObj.buildDenseNet()
