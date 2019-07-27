@@ -12,32 +12,24 @@ from binascii import a2b_base64
 from keras.models import load_model
 from keras.preprocessing.image import img_to_array, load_img
 
+from modelUseage.useage import PostProcessor
+
 import matplotlib.pyplot as plt 
 
 import numpy as np 
 
 import os 
 
+
 img_path=os.path.join(os.getcwd(),'test_images','data.png')
 
 model_path='/home/ansary/WORK/OCR/Models/MODEL.hdf5'
 
-model=load_model(model_path)
-print(colored('#        Model Loaded ','green'))
+PostProcessorObj=PostProcessor(model_path)
+
 app=Flask(__name__)
 
-symbol_list=[
-                'অ','আ','ই','ঈ','উ',
-                'ঊ','ঋ','এ','ঐ','ও',
-                'ঔ','ক','খ','গ','ঘ',
-                'ঙ','চ','ছ','জ','ঝ',
-                'ঞ','ট','ঠ','ড','ঢ',
-                'ণ','ত','থ','দ','ধ',
-                'ন','প','ফ','ব','ভ',
-                'ম','য','র','ল','শ',
-                'ষ','স','হ','ড়','ঢ়',
-                'য়','ৎ','ং','ঃ','ঁ'
-            ] # 'ঁ' not print able
+
 
 # Helper Functions
 def saveImg(data):
@@ -46,12 +38,6 @@ def saveImg(data):
     with open(img_path,'wb') as data:
         data.write(binary_data)
 
-def readImg(img_path):
-    img=load_img(img_path,color_mode = "grayscale",target_size=(64,64))
-    tensor=img_to_array(img)
-    tensor=tensor.astype('float32')/255    
-    pred = np.argmax(model.predict(np.expand_dims(tensor,axis=0)))
-    return pred
 
 # Home Page
 @app.route('/')
@@ -66,6 +52,8 @@ def predict():
 
     try:
         data=request.get_data()
+        
+        
     except Exception as e: 
         print(colored("#        Can Not Receieve Data",'red'))
         print(e)
@@ -73,14 +61,16 @@ def predict():
     
     try:
         saveImg(data)
+        
+        
     except Exception as e: 
         print(colored("#        Can Not Save Image",'red'))
         print(e)
         string_res='FAILED TO SAVE DATA'
     
-    pred=readImg(img_path)
+    with PostProcessorObj.graph.as_default():
+        string_res=PostProcessorObj.predict_symbol(img_path,app_data=True)
     
-    string_res=symbol_list[pred]
     
     return string_res
 
