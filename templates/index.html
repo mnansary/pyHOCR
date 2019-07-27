@@ -19,7 +19,7 @@
         <button class="button" onmousedown="processCanvas() ">অক্ষরটি অনুমান করুন </button>
     </div>
 
-	<h1 id="result">The Predicted Val</h1>
+	<h1 id="result">ফলাফল</h1>
 	
     
     <script>
@@ -28,6 +28,7 @@
             var canvas = document.getElementById("canvas");
             ctx = canvas.getContext("2d");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            $('#result').text('ফলাফল');
         }
     </script>
      
@@ -40,11 +41,10 @@
             var img=canvasObj.toDataURL();
             $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:5000/predict/",
+            url: "http://127.0.0.1:5000/predict/",  // Debug Default Server (USE-- ScriptRoot for Rigorous Useage)  
             data:img,
-            success: function(data){
-                $('#result').text(' Predicted Output: '+data);
-            //if request if made successfully then the response represent the data
+            success: function(response){
+                $('#result').text(' লিখিত অক্ষরটি : '+response);
             }
             
             });

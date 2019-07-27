@@ -48,7 +48,7 @@ class PostProcessor(object):
         print(colored('Test data Prediction Accuracy [F1 accuracy]: {}'.format(prediction_accuracy),'green'))
     
 
-    def predict_symbol(self,img_path,plot_flag=False,app_data=False):
+    def predict_symbol(self,img_path,app_data=False):
         img_data = cv2.imread(img_path,0)
             
         tensor=img_to_array(img_data)
