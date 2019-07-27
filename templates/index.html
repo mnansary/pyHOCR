@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>হাতে লেখা বাংলা অক্ষর নির্ধারণ</title>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='main.css')}}" >
+  <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static',filename='favicon.ico')}}" />
+</head>
+
+<body>
+    
+   
+    <h1>হাতে লেখা বাংলা অক্ষর নির্ধারণ</h1>
+    <h2>মোঃ নাজমুদ্দোহা আনসারী</h2>
+    <h2>মেশিন লার্নিং মডেলঃ ডেনস নেট</h2>
+    <canvas id="canvas" width="320" height="320" style="border:2px solid;border-radius: 2px; cursor: crosshair;"></canvas>
+    <div class="btn-group">
+        <button class="button" onmousedown="clearCanvas() ">ক্যানভাস মুছে ফেলুন </button>
+        <button class="button" onmousedown="processCanvas() ">অক্ষরটি অনুমান করুন </button>
+    </div>
+
+	<h1 id="result">The Predicted Val</h1>
+	
+    
+    <script>
+        function clearCanvas()
+        {
+            var canvas = document.getElementById("canvas");
+            ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    </script>
+     
+    <script type="text/javascript" src="{{url_for('static',filename='canvas.js')}}"></script> 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script>
+        function processCanvas()
+        {
+            var canvasObj = document.getElementById("canvas");
+            var img=canvasObj.toDataURL();
+            $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:5000/predict/",
+            data:img,
+            success: function(data){
+                $('#result').text(' Predicted Output: '+data);
+            //if request if made successfully then the response represent the data
+            }
+            
+            });
+        }
+        
+    </script>
+
+</body>
+</html>
