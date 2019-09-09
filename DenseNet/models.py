@@ -149,5 +149,6 @@ def denseNet():
     mdl=DenseNet()
     mdl.buildDenseNet()
     model=mdl.DenseNetModel
-    return model
+    model_name=mdl.model_name
+    return model,model_name
 

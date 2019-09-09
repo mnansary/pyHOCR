@@ -52,5 +52,9 @@ From:[Alom et. al. 2018](https://www.hindawi.com/journals/cin/2018/6747098/)
     numpy==1.16.4  
     tensorflow==1.13.1  
 * *pip3 install -r requirements.txt*
+# Colab and TPU(Tensor Processing Unit)
+*TPU’s have been recently added to the Google Colab portfolio making it even more attractive for quick-and-dirty machine learning projects when your own local processing units are just not fast enough. While the **Tesla K80** available in Google Colab delivers respectable **1.87 TFlops** and has **12GB RAM**, the **TPUv2** available from within Google Colab comes with a whopping **180 TFlops**, give or take. It also comes with **64 GB** High Bandwidth Memory **(HBM)**.*
+[Visit This For More Info](https://medium.com/@jannik.zuern/using-a-tpu-in-google-colab-54257328d7da)
+
 # Implemented Model Architechture
 ![](/info/model.png?raw=true)
