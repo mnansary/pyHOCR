@@ -60,3 +60,6 @@ From:[Alom et. al. 2018](https://www.hindawi.com/journals/cin/2018/6747098/)
 # Implemented Model Architechture
 ![](/info/model.png?raw=true)
 # Flask App Deployement
+For Deployment of the Saved Model **python-flask** is used.
+> The deployment is very simple and to be honest can be more optimized 
+![](/info/app.png?raw=true)
