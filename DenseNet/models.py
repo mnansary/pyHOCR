@@ -19,10 +19,10 @@ class DenseNet(object):
         num_of_dense_block=3,
         growth_rate=16, 
         num_of_filter=16, 
-        dropout_rate=0.1,
+        dropout_rate=None,
         weight_decay=1E-4,
         compression=0.5,
-        add_bottleneck=True):
+        add_bottleneck=False):
         """
         Arguments:
             image_dim= shape of image input -> Model Input
