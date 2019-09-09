@@ -15,10 +15,10 @@ class DenseNet(object):
     def __init__(
         self,image_dim=(64,64,1),
         num_of_classes=50,
-        num_of_layers=12,
+        num_of_layers=6,
         num_of_dense_block=3,
-        growth_rate=16, 
-        num_of_filter=16, 
+        growth_rate=12, 
+        num_of_filter=12, 
         dropout_rate=None,
         weight_decay=1E-4,
         compression=0.5,
@@ -130,7 +130,7 @@ class DenseNet(object):
             bottleneck_flag='no'
         
 
-        self.model_name='DenseNet-Class:{}-Shape:{}-dropout:{}-bottleneck:{} '.format(self.num_of_classes,self.model_input,dropout_flag,bottleneck_flag)
+        self.model_name='DenseNet'
 
         self.__initialConvLayer()
 
