@@ -57,9 +57,29 @@ From:[Alom et. al. 2018](https://www.hindawi.com/journals/cin/2018/6747098/)
 [Visit This For More Info](https://medium.com/@jannik.zuern/using-a-tpu-in-google-colab-54257328d7da)  
 **For this model the approx time/epoch=24s**
 > Test data Prediction Accuracy [F1 accuracy]: 98.56666666666666
-# Implemented Model Architechture
-![](/info/model.png?raw=true)
 # Flask App Deployement
 For Deployment of the Saved Model **python-flask** is used.
 > The deployment is very simple and to be honest can be more optimized 
 ![](/info/app.png?raw=true)
+# Segmentation (incomplete)
+The final goal of the segmentation script is to separate:
+1. *Words From Lines*
+2. *Symbols From Words*
+For the goal of separation, **Connected Components** are mapped with pixel distribution after ***"skeletonization"*** and finding an **optimal rotation** for both **skewness** and **separation**.
+#### Example Image:
+![](/info/s2.png?raw=true)
+#### Connected Components:
+![](/info/s3.png?raw=true)
+#### Segmentation with "skeletonization":
+![](/info/s3.png?raw=true)
+#### Segmented Words Example:
+![](/info/s4.png?raw=true)
+![](/info/s5.png?raw=true)
+![](/info/s6.png?raw=true)
+**NOTE:** See how the word ***"মনেরে"***  and "ভাল-মন্দ" are rotated for an optimal position with respect to a straight line or **"মাত্রা"** as we call it in **"বাংলা"** but the word **যাহাই** is left as it is because the skewness is *completely by chance* in the optimal rotation for separation.
+
+
+# Implemented DenseNet Model Architechture
+The implemented model architechture can be found at ***/info/model.png***
+> Loading the image may take time due to speed and size
+![](/info/model.png?raw=true)
