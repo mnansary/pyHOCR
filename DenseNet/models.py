@@ -10,7 +10,7 @@ from tensorflow.keras.layers import Activation, Convolution2D, Dropout, GlobalAv
 from tensorflow.keras.layers import Concatenate, Dense, Input, AveragePooling2D
 from tensorflow.keras.layers import BatchNormalization
 from tensorflow.keras.regularizers import l2
-
+from keras.utils import plot_model
 class DenseNet(object):
     def __init__(
         self,image_dim=(32,32,1),
@@ -152,3 +152,6 @@ def denseNet():
     model_name=mdl.model_name
     return model,model_name
 
+if __name__=='__main__':
+    model,_=denseNet()
+    plot_model(model,to_file='model.png',show_shapes=True)
