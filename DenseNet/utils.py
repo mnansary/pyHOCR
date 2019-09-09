@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 
 import h5py
 
-def image_to_tensor(file_name,resize_dim=(64,64)):
+def image_to_tensor(file_name,resize_dim=(32,32)):
     img=load_img(file_name,color_mode = "grayscale",target_size=resize_dim)
     arr=img_to_array(img)
     tensor=np.expand_dims(arr,axis=0)
@@ -24,7 +24,7 @@ def image_to_tensor(file_name,resize_dim=(64,64)):
 
 
 class DataSet(object):
-    def __init__(self,dset_dir,resize_dim=(64,64)):
+    def __init__(self,dset_dir,resize_dim=(32,32)):
         '''
             Alphabet Final DataSet Specific
         '''
