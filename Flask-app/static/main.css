@@ -1,0 +1,36 @@
+
+html {
+  text-align: center;
+}
+
+body {
+  display: inline-block;
+  margin: 0px auto;
+  text-align: center;
+}
+
+h1 {
+  border: 5px solid green;
+}
+
+.btn-group .button {
+  background-color: #4CAF50; /* Green */
+  border: 1px solid green;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  cursor: pointer;
+  width: 300px;
+  display: inline-block;
+  border-radius: 12px;
+}
+
+.btn-group .button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+.btn-group .button:hover {
+  background-color: #3e8e41;
+}

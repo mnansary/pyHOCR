@@ -109,4 +109,5 @@ pyHOCR/*
 
 # scripts
 scripts/*
-Flask-app/*
+Flask-app/__pycache__/*
+Flask-app/DenseNet.h5
