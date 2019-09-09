@@ -5,11 +5,11 @@
 from __future__ import print_function
 from termcolor import colored
 
-from keras.models import Model
-from keras.layers import Activation, Convolution2D, Dropout, GlobalAveragePooling2D
-from keras.layers import Concatenate, Dense, Input, AveragePooling2D
-from keras.layers.normalization import BatchNormalization
-from keras.regularizers import l2
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Activation, Convolution2D, Dropout, GlobalAveragePooling2D
+from tensorflow.keras.layers import Concatenate, Dense, Input, AveragePooling2D
+from tensorflow.keras.layers import BatchNormalization
+from tensorflow.keras.regularizers import l2
 
 class DenseNet(object):
     def __init__(
@@ -142,7 +142,7 @@ class DenseNet(object):
         self.__denseBlock(self.num_of_layers[-1])
         self.__fullyConnect()
         
-        self.DenseNetModel=Model(input=self.model_input,output=self.output,name=self.model_name)
+        self.DenseNetModel=Model(inputs=self.model_input,outputs=self.output,name=self.model_name)
 
 
 def denseNet():
