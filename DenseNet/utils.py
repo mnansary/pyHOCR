@@ -14,6 +14,8 @@ from keras.utils import to_categorical
 from sklearn.datasets import load_files 
 from sklearn.model_selection import train_test_split
 
+import h5py
+
 def image_to_tensor(file_name,resize_dim=(64,64)):
     img=load_img(file_name,color_mode = "grayscale",target_size=resize_dim)
     arr=img_to_array(img)
@@ -66,11 +68,28 @@ class DataSet(object):
             return [self.train_tensors,self.train_classes,self.valid_tensors,self.valid_classes]
 
 
+def saveh5(data,iden):
+    hf = h5py.File('{}.h5'.format(iden) , 'w')
+    hf.create_dataset('data',data=data)
+    hf.close()
+    print('Saved: \t {}.h5'.format(iden))
+
 def info_preprocess(dset_dir):
     dset=DataSet(dset_dir)
-    trt,_,vlt,_=dset.preprocess()
-    print(trt.shape)
-    print(vlt.shape)
+    Xt,Yt,Xv,Yv=dset.preprocess()
+    Xtt=dset.test_tensors
+    Ytt=dset.test_classes
+    saveh5(Xt,'Xt')
+    saveh5(Yt,'Yt')
+    saveh5(Xv,'Xv')
+    saveh5(Yv,'Yv')
+    saveh5(Xtt,'Xtt')
+    saveh5(Ytt,'Ytt')
+
+def readh5(d_path):
+    data=h5py.File(d_path, 'r')
+    data = np.array(data['data'])
+    return data
 
 if __name__=='__main__':
     import argparse
@@ -79,3 +98,16 @@ if __name__=='__main__':
     args = parser.parse_args()
     dset_dir=args.dset_dir
     info_preprocess(dset_dir)
+    Xt=readh5('Xt.h5')
+    Yt=readh5('Yt.h5')
+    Xv=readh5('Xv.h5')
+    Yv=readh5('Yv.h5')
+    Xtt=readh5('Xtt.h5')
+    Ytt=readh5('Ytt.h5')
+    print(Xt.shape)
+    print(Yt.shape)
+    print(Xv.shape)
+    print(Yv.shape)
+    print(Xtt.shape)
+    print(Ytt.shape)
+    
