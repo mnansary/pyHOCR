@@ -103,5 +103,10 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-test_images/*
-saved_models/*
+# env
+.vscode/*
+pyHOCR/*
+
+# scripts
+scripts/*
+Flask-app/*

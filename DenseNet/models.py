@@ -143,3 +143,11 @@ class DenseNet(object):
         self.__fullyConnect()
         
         self.DenseNetModel=Model(input=self.model_input,output=self.output,name=self.model_name)
+
+
+def denseNet():
+    mdl=DenseNet()
+    mdl.buildDenseNet()
+    model=mdl.DenseNetModel
+    return model
+
