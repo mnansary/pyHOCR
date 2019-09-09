@@ -70,13 +70,11 @@ For the goal of separation, **Connected Components** are mapped with pixel distr
 ![](/info/s2.png?raw=true)
 #### Connected Components:
 ![](/info/s3.png?raw=true)
-#### Segmentation with "skeletonization":
-![](/info/s3.png?raw=true)
 #### Segmented Words Example:
 ![](/info/s4.png?raw=true)
 ![](/info/s5.png?raw=true)
 ![](/info/s6.png?raw=true)
-**NOTE:** See how the word ***"মনেরে"***  and "ভাল-মন্দ" are rotated for an optimal position with respect to a straight line or **"মাত্রা"** as we call it in **"বাংলা"** but the word **যাহাই** is left as it is because the skewness is *completely by chance* in the optimal rotation for separation.
+**NOTE:** See how the word ***"মনেরে"***  and ***"ভাল-মন্দ"*** are rotated for an optimal position with respect to a straight line or **"মাত্রা"** as we call it in **"বাংলা"** but the word ***"যাহাই"*** is left as it is because the skewness is *completely by chance* in the optimal rotation for separation.
 
 
 # Implemented DenseNet Model Architechture
