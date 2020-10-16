@@ -111,3 +111,8 @@ pyHOCR/*
 scripts/*
 Flask-app/__pycache__/*
 Flask-app/DenseNet.h5
+
+# ignores
+BasicFinalDatabase/*
+ocrenv/*
+OcrDTF/*
